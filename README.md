@@ -20,7 +20,10 @@ sudo apt install \
 ```
 ```
 python -m pip install --upgrade pip
-python -m pip install mediapipe opencv-python numpy
+python -m pip install \
+	mediapipe \
+	numpy==1.26.4 \
+	opencv-python==4.10.0 \
 ```
 
 ## ROS2 패키지 설명
