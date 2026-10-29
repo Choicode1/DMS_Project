@@ -23,6 +23,16 @@ python -m pip install --upgrade pip
 python -m pip install mediapipe opencv-python numpy
 ```
 
+## ROS2 패키지 설명
+| 패키지 | 담당 기능 | 주요 출력 |
+| dms_msgs | 공통 메시지·서비스 정의 | 메시지 인터페이스 |
+| dms_camera | 카메라 연결, 영상 발행, 카메라 상태 | 영상 및 진단 |
+| dms_perception | 얼굴 검출, 랜드마크, EAR, PERCLOS, 머리 자세, 시선 | 운전자 상태 |
+| dms_identity | 얼굴 특징 추출, 등록 운전자 비교, 미등록 판별 | 식별 상태 |
+| dms_risk | 시간 누적, 위험도 분류, 센서 이상 판단 | 위험도·사유 |
+| dms_warning | 위험도에 따른 경고 출력 | 부저·음성·표시 |
+| dms_bringup | 노드 실행, 파라미터 전달, 전체 시스템 구성 | 통합 실행 |
+
 ## 참조 알고리즘
 - 졸음 감지: MediaPipe Face Landmarker https://developers.google.cn/edge/mediapipe/solutions/vision/face_landmarker/python
 - 주시 상태 분석: OpenVINO 모델 https://docs.openvino.ai/2023.3/omz_demos_gaze_estimation_demo_cpp.html
