@@ -1,0 +1,52 @@
+토픽 예시	메시지	역할
+/dms/camera/image_raw	sensor_msgs/Image	카메라 영상 입력
+/dms/driver_state	커스텀 메시지	눈 감김, PERCLOS, 머리 자세, 시선 상태
+/dms/driver_identity	커스텀 메시지	등록 ID 또는 미확인 상태
+/dms/risk_level	커스텀 메시지	정상, 주의, 위험, 센서 이상
+/dms/warning	커스텀 메시지	부저·음성·표시 장치에 전달할 경고
+/diagnostics	diagnostic_msgs/DiagnosticArray	카메라·모델·추론 상태 진단
+
+
+상태	판단 예시	시스템 동작
+정상	눈 개방, 전방 주시	상태 모니터링
+주의	시선 이탈 지속, 잦은 하품	시각적 알림
+졸음 위험	눈 감김 지속, PERCLOS 증가	음성 및 부저 경고
+센서 이상	얼굴 미검출, 카메라 연결 실패	센서 이상 경고 및 상태 보고
+
+
+# 노드 상세
+dms_core/dms_core/
+- perception_node.py — 얼굴·눈·시선·고개 자세 분석
+- identity_node.py — 등록 운전자 식별
+- risk_manager_node.py — 위험도 판단
+- face_detector.py, eye_analyzer.py, perclos_tracker.py, head_pose.py, identity_matcher.py — 알고리즘 모듈
+
+
+
+dms_hardware/dms_hardware/
+- camera_node.py — 영상 입력
+- warning_node.py — 경고 출력
+
+
+
+dms_bringup/launch/
+- dms.launch.py — 전체 시스템 통합 실행
+
+
+# 토픽 흐름
+
+usb_cam 패키지
+/image_raw
+	↓
+perception_node
+얼굴 검출 · 눈 감김 · PERCLOS · 고개 자세 · 시선
+/dms/driver_state
+	↓
+risk_manager_node
+위험 상태 판단 · 센서 타임아웃 감지
+/dms/risk_level
+	↓
+warning_node
+경고 출력
+
+** 운전자 식별은 별도 identity_node에서 처리해 /dms/driver_identity로 전달

@@ -1,0 +1,6 @@
+sudo apt install \
+	ros-humble-usb-cam \
+	ros-humble-cv-bridge
+	
+	
+python -m pip install \

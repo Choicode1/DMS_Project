@@ -1,0 +1,21 @@
+#. Visual Studio cache
+.vs/
+.vscode/
+
+#. Python cache
+__pycache__/
+
+#. Custom
+/temp/
+
+
+#. ROS2 build Output
+build/
+install/
+log/
+*.pyc
+.env
+
+#. Test Videos
+*.mp4
+*.webm
