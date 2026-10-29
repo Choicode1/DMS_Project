@@ -7,6 +7,7 @@ __pycache__/
 
 #. Custom
 /temp/
+models/
 
 
 #. ROS2 build Output
@@ -17,5 +18,6 @@ log/
 .env
 
 #. Test Videos
+images/
 *.mp4
 *.webm
