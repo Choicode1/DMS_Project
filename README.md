@@ -25,6 +25,7 @@ python -m pip install mediapipe opencv-python numpy
 
 ## ROS2 패키지 설명
 | 패키지 | 담당 기능 | 주요 출력 |
+| :--- | :--- | :--- |
 | dms_msgs | 공통 메시지·서비스 정의 | 메시지 인터페이스 |
 | dms_camera | 카메라 연결, 영상 발행, 카메라 상태 | 영상 및 진단 |
 | dms_perception | 얼굴 검출, 랜드마크, EAR, PERCLOS, 머리 자세, 시선 | 운전자 상태 |
