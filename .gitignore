@@ -19,5 +19,6 @@ log/
 
 #. Test Videos
 images/
+videos/
 *.mp4
 *.webm

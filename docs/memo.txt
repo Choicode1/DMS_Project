@@ -35,18 +35,32 @@ dms_bringup/launch/
 
 # 토픽 흐름
 
-usb_cam 패키지
+[ROS2 Node]camera_node
 /image_raw
 	↓
-perception_node
-얼굴 검출 · 눈 감김 · PERCLOS · 고개 자세 · 시선
+[ROS2 Node]perception_node
+	↓
+	[Module]face_detector
+	YuNet모델 얼굴 검출
+		↓
+	[Module]eye_analyzer
+	MediaPipe landmarker 모델이용 EAR(눈 개폐 비율 상태판별) 계산
+		↓
+	[Module]PERCLOS Tracker
+	최근 60초 눈 감김 비율 계산
+	PERCLOS = 측정 구간 내 유효 관측 시간 중, 측정 구간 내 눈 감김 시간 비율
+	Coverage = 60초 측정 구간 중 유효 눈 상태 관측 비율
+	↓
+[ROS2 Node]perception_node
+얼굴검출 / 눈 감김 · PERCLOS · 고개 자세 · 시선
+/dms/face_debug_image
 /dms/driver_state
 	↓
-risk_manager_node
+[ROS2 Node]risk_manager_node
 위험 상태 판단 · 센서 타임아웃 감지
 /dms/risk_level
 	↓
-warning_node
+[ROS2 Node]warning_node
 경고 출력
 
 ** 운전자 식별은 별도 identity_node에서 처리해 /dms/driver_identity로 전달
